@@ -1,7 +1,3 @@
-## Screenshot
-
-![QR Generator](screenshots/home.png)
-
 # QR Generator Payment Laravel
 
 Aplikasi QR Code Generator berbasis Laravel yang dapat digunakan untuk membuat QR code untuk berbagai kebutuhan seperti:
