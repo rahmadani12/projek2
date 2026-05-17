@@ -14,15 +14,44 @@ class QrController extends Controller
 
     public function generate(Request $request)
     {
-        $request->validate([
-            'content' => 'required'
-        ]);
+    $request->validate([
+        'type' => 'required'
+    ]);
 
-        // Generate QR SVG
-        $qr = QrCode::size(300)
-            ->generate($request->content);
+    /*
+    |--------------------------------------------------------------------------
+    | QR BIASA
+    |--------------------------------------------------------------------------
+    */
 
-        // Kirim langsung ke view
-        return view('welcome', compact('qr'));
+    if ($request->type == 'text') {
+
+        $content = $request->content;
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | QR PAYMENT / QRIS
+    |--------------------------------------------------------------------------
+    */
+
+    else {
+
+        // contoh QRIS dummy
+
+        $content =
+        "00020101021126670016COM.NOBUBANK.WWW01189360050300000879140214QRIS1234567895204581253033605405500005802ID5910TOKO TEST6013JAKARTA6105123456304ABCD";
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Generate QR
+    |--------------------------------------------------------------------------
+    */
+
+    $qr = QrCode::size(300)
+        ->generate($content);
+
+    return view('welcome', compact('qr'));
     }
 }

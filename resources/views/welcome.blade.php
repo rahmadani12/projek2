@@ -23,6 +23,23 @@
                 <form action="/generate" method="POST">
 
                     @csrf
+                    <div class="mb-3">
+
+                        <label>Tipe QR</label>
+
+                        <select name="type" class="form-control">
+
+                            <option value="text">
+                                 Text / URL
+                            </option>
+
+                             <option value="payment">
+                                QR Payment
+                            </option>
+
+                        </select>
+
+                    </div>
 
                     <div class="mb-3">
 
@@ -55,7 +72,9 @@
                 @isset($qr)
 
                     <div class="mt-3">
-                        {!! $qr !!}
+
+                         {!! $qr !!}
+
                     </div>
 
                 @endisset
