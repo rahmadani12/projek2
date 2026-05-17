@@ -1,0 +1,17 @@
+body{
+    background:#f5f5f5;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.card{
+    border:none;
+    border-radius:15px;
+}
+
+h1,h2{
+    font-weight:bold;
+}
+
+button{
+    width:100%;
+}

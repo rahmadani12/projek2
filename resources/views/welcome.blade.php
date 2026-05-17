@@ -4,11 +4,17 @@
 
     <title>QR Generator</title>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="icon" href="{{ asset('favicon.ico') }}?v=2">
+
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="{{ asset('style.css') }}">
 
 </head>
 
-<body style="background:#f5f5f5;">
+<body>
 
 <div class="container mt-5">
 
@@ -23,6 +29,7 @@
                 <form action="/generate" method="POST">
 
                     @csrf
+
                     <div class="mb-3">
 
                         <label>Tipe QR</label>
@@ -30,10 +37,10 @@
                         <select name="type" class="form-control">
 
                             <option value="text">
-                                 Text / URL
+                                Text / URL
                             </option>
 
-                             <option value="payment">
+                            <option value="payment">
                                 QR Payment
                             </option>
 
@@ -49,8 +56,9 @@
                             type="text"
                             name="content"
                             class="form-control"
-                            placeholder="Masukkan URL">
-
+                            placeholder="Masukkan URL"
+                            value="{{ old('content', $content ?? '') }}">
+                            
                     </div>
 
                     <button class="btn btn-primary">
@@ -73,7 +81,7 @@
 
                     <div class="mt-3">
 
-                         {!! $qr !!}
+                        {!! $qr !!}
 
                     </div>
 

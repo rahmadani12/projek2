@@ -52,6 +52,6 @@ class QrController extends Controller
     $qr = QrCode::size(300)
         ->generate($content);
 
-    return view('welcome', compact('qr'));
+    return view('welcome', compact('qr', 'content'));
     }
 }
