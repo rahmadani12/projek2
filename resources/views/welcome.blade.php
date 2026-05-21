@@ -79,14 +79,61 @@
 
                 @isset($qr)
 
-                    <div class="mt-3">
+                    <div class="qr-box mt-3"  id="qr-container">
 
                         {!! $qr !!}
 
                     </div>
 
+                    <div class="mt-4">
+                        <button class="btn btn-success" onclick="downloadQR()">
+                            Download QR
+                        </button>
+
                 @endisset
 
+            <script>
+
+                function downloadQR() {
+
+                    let svg = document.querySelector("#qr-container svg");
+
+                    let serializer = new XMLSerializer();
+
+                    let source = serializer.serializeToString(svg);
+
+                    let image = new Image();
+
+                    image.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(source);
+
+                    image.onload = function () {
+
+                        let canvas = document.createElement('canvas');
+
+                        canvas.width = image.width;
+
+                        canvas.height = image.height;
+
+                        let context = canvas.getContext('2d');
+
+                        context.fillStyle = "#ffffff";
+                        context.fillRect(0, 0, canvas.width, canvas.height);
+
+                        context.drawImage(image, 0, 0);
+
+                        let a = document.createElement('a');
+
+                        a.download = 'qrcode.png';
+
+                        a.href = canvas.toDataURL('image/png');
+
+                        a.click();
+
+                    };
+
+                    }
+
+                </script>
             </div>
 
         </div>
